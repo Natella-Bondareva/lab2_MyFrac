@@ -25,9 +25,9 @@ namespace lab2_MyFrac
             MyFrac myFracDivide = new MyFrac(long.Parse(Console.ReadLine()), long.Parse(Console.ReadLine()));
             Console.WriteLine("Дріб, який поділили на щойновведений дріб:" + myFrac.Divide(myFracDivide).ToString());
             Console.WriteLine("Введіть n:");
-            Console.WriteLine($"Результат виконання методу CalcSum1: {myFrac.CalcSum1(int.Parse(Console.ReadLine()))}");
+            Console.WriteLine($"Результат виконання методу CalcSum1: {MyFrac.CalcSum1(int.Parse(Console.ReadLine()))}");
             Console.WriteLine("Введіть n:");
-            Console.WriteLine($"Результат виконання методу CalcSum2: {myFrac.CalcSum2(int.Parse(Console.ReadLine()))}");
+            Console.WriteLine($"Результат виконання методу CalcSum2: {MyFrac.CalcSum2(int.Parse(Console.ReadLine()))}");
         }
 
 

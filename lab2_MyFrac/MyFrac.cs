@@ -19,16 +19,16 @@ namespace lab2_MyFrac
                 }
             }
         }
-        public MyFrac(long nom_, long denom_)
+        public MyFrac(long nom, long denom)
         {
             long divider = 1;
-            if (Math.Abs(nom_)>=Math.Abs(denom_)) { divider = GCD(nom_, denom_);}
-            else if (Math.Abs(denom_) >Math.Abs(nom_)) { divider = GCD(denom_, nom_);}
+            if (Math.Abs(nom)>=Math.Abs(denom)) { divider = GCD(nom, denom);}
+            else if (Math.Abs(denom) >Math.Abs(nom)) { divider = GCD(denom, nom);}
 
-            this.nom = nom_ / divider;
-            denom = denom_ / divider;
+            this.nom = nom / divider;
+            this.denom = denom / divider;
 
-            if (denom < 0) {  denom *= -1; this.nom *= -1; }
+            if (this.denom < 0) {  this.denom *= -1; this.nom *= -1; }
         }
 
         private long GCD(long a, long b)
@@ -86,7 +86,7 @@ namespace lab2_MyFrac
         {
             return new MyFrac(this.nom * otherFrac.denom, this.denom * otherFrac.nom);
         }
-        public MyFrac  CalcSum1(int n)
+        static public MyFrac  CalcSum1(int n)
         {
             MyFrac res = new MyFrac(0, 1);
             for (int i = 1; i <= n; i++)
@@ -96,7 +96,7 @@ namespace lab2_MyFrac
             }
             return res;
         }
-        public MyFrac CalcSum2(int n)
+        static public MyFrac CalcSum2(int n)
         {
             MyFrac res = new MyFrac(1, 1);
             MyFrac one = new MyFrac(1, 1);
