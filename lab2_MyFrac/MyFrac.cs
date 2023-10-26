@@ -5,14 +5,14 @@ namespace lab2_MyFrac
     internal class MyFrac
     {
         private long nom { get; set; }
-        private long denom_;
+        private long _denom;
 
         public long denom
         {
-            get { return denom_; } 
+            get { return _denom; } 
             set 
             {
-                if (value != 0) denom_ = (long)value; 
+                if (value != 0) _denom = (long)value; 
                 else
                 {
                     throw new ArgumentException("Знаменник не може бути нулем");
@@ -28,7 +28,7 @@ namespace lab2_MyFrac
             this.nom = nom_ / divider;
             denom = denom_ / divider;
 
-            if (denom_ < 0) {  denom *= -1; this.nom *= -1; }
+            if (denom < 0) {  denom *= -1; this.nom *= -1; }
         }
 
         private long GCD(long a, long b)
@@ -43,6 +43,10 @@ namespace lab2_MyFrac
         }
         public override string ToString()
         {
+            if(Math.Abs(nom) == Math.Abs(denom) || nom ==0)
+            {
+                return $"{nom}";
+            }
             return $"{nom}/{denom}";
         }
 
@@ -66,21 +70,21 @@ namespace lab2_MyFrac
             double res = Convert.ToDouble(nom)/ Convert.ToDouble(denom);
             return res;
         }
-        public MyFrac Plus(MyFrac f1, MyFrac f2)
+        public MyFrac Plus(MyFrac otherFrac)
         {
-            return new MyFrac(f1.nom * f2.denom + f1.denom * f2.nom, f1.denom * f2.denom);
+            return new MyFrac(this.nom * otherFrac.denom + this.denom * otherFrac.nom, this.denom * otherFrac.denom);
         }
-        public MyFrac Minus(MyFrac f1, MyFrac f2)
+        public MyFrac Minus(MyFrac otherFrac)
         {
-            return new MyFrac(f1.nom * f2.denom - f1.denom * f2.nom, f1.denom * f2.denom);
+            return new MyFrac(this.nom * otherFrac.denom - this.denom * otherFrac.nom, this.denom * otherFrac.denom);
         }
-        public MyFrac Multiply(MyFrac f1, MyFrac f2)
+        public MyFrac Multiply(MyFrac otherFrac)
         {
-            return new MyFrac(f1.nom * f2.nom, f1.denom * f2.denom);
+            return new MyFrac(this.nom * otherFrac.nom, this.denom * otherFrac.denom);
         }
-        public MyFrac Divide(MyFrac f1, MyFrac f2)
+        public MyFrac Divide(MyFrac otherFrac)
         {
-            return new MyFrac(f1.nom * f2.denom, f1.denom * f2.nom);
+            return new MyFrac(this.nom * otherFrac.denom, this.denom * otherFrac.nom);
         }
         public MyFrac  CalcSum1(int n)
         {
@@ -88,7 +92,7 @@ namespace lab2_MyFrac
             for (int i = 1; i <= n; i++)
             {
                 MyFrac add = new MyFrac(1, i * (i + 1));
-                res = Plus(res, add); 
+                res = res.Plus(add); 
             }
             return res;
         }
@@ -98,8 +102,8 @@ namespace lab2_MyFrac
             MyFrac one = new MyFrac(1, 1);
             for (int i = 2; i <= n +1; i++)
             {
-                MyFrac add = Minus(one,new MyFrac(1,(long) Math.Pow(i,2)));
-                res = Multiply(res, add);
+                MyFrac add = one.Minus(new MyFrac(1,(long) Math.Pow(i,2)));
+                res = res.Multiply(add);
             }
             return res;
         }
