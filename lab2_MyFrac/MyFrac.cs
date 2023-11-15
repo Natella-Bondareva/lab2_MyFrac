@@ -48,17 +48,17 @@ namespace lab2_MyFrac
 
         public string ToStringWithIntegerPart()
         {
-            if (nom > Math.Abs(denom) && nom >= 0)
+            if (nom > Math.Abs(denom) && nom >= 0 && denom != 1)
             {
                 long integralPart = (long)(nom / denom);
                 return $"{integralPart} + {nom % integralPart}/{denom}";
             }
-            else if (nom > Math.Abs(denom) && nom < 0)
+            else if (nom > Math.Abs(denom) && nom < 0 && denom != 1)
             {
                 long integralPart = (long)(nom / denom);
                 return $"-({integralPart} + {nom % integralPart}/{denom})";
             }
-            else if (denom == nom) { return $"1"; }
+            else if (denom == nom | denom == 1) { return $"{nom}"; }
             else { return $"{nom}/{denom}"; }
         }
         public double DoubleValue()
